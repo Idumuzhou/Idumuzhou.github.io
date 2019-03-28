@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="LuoXuLiang">
 <meta property="og:description" content="敏感权限 权限组   所有危险的 Android 系统权限都属于权限组。如果设备运行的是 Android 6.0（API 级别 23），并且应用的 targetSdkVersion 是 23 或更高版本，则当用户请求危险权限时系统会发生以下行为：     如果应用请求其清单中列出的危险权限，而应用目前在权限组中没有任何权限，则系统会向用户显示一个对话框，描述应用要访问的权限组。对话框不描述该组内的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-03-13T14:08:51.938Z">
+<meta property="og:updated_time" content="2019-03-13T14:52:45.028Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android动态获取权限">
 <meta name="twitter:description" content="敏感权限 权限组   所有危险的 Android 系统权限都属于权限组。如果设备运行的是 Android 6.0（API 级别 23），并且应用的 targetSdkVersion 是 23 或更高版本，则当用户请求危险权限时系统会发生以下行为：     如果应用请求其清单中列出的危险权限，而应用目前在权限组中没有任何权限，则系统会向用户显示一个对话框，描述应用要访问的权限组。对话框不描述该组内的">
@@ -344,7 +344,7 @@
 <p>所有危险的 Android 系统权限都属于权限组。如果设备运行的是 Android 6.0（API 级别 23），并且应用的 targetSdkVersion 是 23 或更高版本，则当用户请求危险权限时系统会发生以下行为：  </p>
 </li>
 </ul>
-<p>如果应用请求其清单中列出的危险权限，而应用目前在权限组中没有任何权限，则系统会向用户显示一个对话框，描述应用要访问的权限组。对话框不描述该组内的具体权限。例如，如果应用请求 READ_CONTACTS 权限，系统对话框只说明该应用需要访问设备的联系信息。如果用户批准，系统将向应用授予其请求的权限。<br>如果应用请求其清单中列出的危险权限，而应用在同一权限组中已有另一项危险权限，则系统会立即授予该权限，而无需与用户进行任何交互。例如，如果某应用已经请求并且被授予了 READ_CONTACTS 权限，然后它又请求 WRITE_CONTACTS，系统将立即授予该权限。<br>任何权限都可属于一个权限组，包括正常权限和应用定义的权限。但权限组仅当权限危险时才影响用户体验。可以忽略正常权限的权限组。<br>如果设备运行的是 Android 5.1（API 级别 22）或更低版本，并且应用的 targetSdkVersion 是 22 或更低版本，则系统会在安装时要求用户授予权限。再<br>次强调，系统只告诉用户应用需要的权限组，而不告知具体权限。<br><a id="more"></a><br><br>  表 1. 危险权限和权限组。<br>  | 权限组 | 权限 |<br>| —— | —— |<br>| CALENDAR | READ_CALENDAR<br>WRITE_CALENDAR |<br>| CAMERA | CAMERA |<br>| 稍微长一点的文本 | 短文本 | </p>
+<p>如果应用请求其清单中列出的危险权限，而应用目前在权限组中没有任何权限，则系统会向用户显示一个对话框，描述应用要访问的权限组。对话框不描述该组内的具体权限。例如，如果应用请求 READ_CONTACTS 权限，系统对话框只说明该应用需要访问设备的联系信息。如果用户批准，系统将向应用授予其请求的权限。<br>如果应用请求其清单中列出的危险权限，而应用在同一权限组中已有另一项危险权限，则系统会立即授予该权限，而无需与用户进行任何交互。例如，如果某应用已经请求并且被授予了 READ_CONTACTS 权限，然后它又请求 WRITE_CONTACTS，系统将立即授予该权限。<br>任何权限都可属于一个权限组，包括正常权限和应用定义的权限。但权限组仅当权限危险时才影响用户体验。可以忽略正常权限的权限组。<br>如果设备运行的是 Android 5.1（API 级别 22）或更低版本，并且应用的 targetSdkVersion 是 22 或更低版本，则系统会在安装时要求用户授予权限。再<br>次强调，系统只告诉用户应用需要的权限组，而不告知具体权限。<br><a id="more"></a><br><br>  表 1. 危险权限和权限组。<br>  | 权限组 | 权限 |<br>| —— | —— |<br>| CALENDAR | READ_CALENDAR  WRITE_CALENDAR |<br>| CAMERA | CAMERA |<br>| CONTACTS | READ_CONTACTS  WRITE_CONTACTS  GET_ACCOUNTS | </p>
 
       
     </div>
