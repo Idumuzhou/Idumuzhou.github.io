@@ -26,7 +26,7 @@
     const effectiveTheme = theme === 'system' ? (systemTheme.matches ? 'dark' : 'light') : theme;
     root.dataset.theme = effectiveTheme;
     const themeColor = document.querySelector('meta[name="theme-color"]');
-    if (themeColor) themeColor.content = effectiveTheme === 'dark' ? '#000000' : '#f5f6f8';
+    if (themeColor) themeColor.content = effectiveTheme === 'dark' ? '#111112' : '#f8f8f7';
     document.querySelectorAll('[data-theme-choice]').forEach((button) => {
       const selected = button.dataset.themeChoice === theme;
       button.classList.toggle('active', selected);
