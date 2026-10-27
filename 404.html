@@ -2,20 +2,19 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0a0b0e">
-  <meta name="description" content="独木舟的个人空间。自律给我自由，记录学习，探索技术。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="页面未找到。回到独木舟，继续探索。">
+  <meta name="robots" content="noindex">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="独木舟 · 数字航行">
-  <meta property="og:description" content="自律给我自由，记录学习，探索技术。">
+  <meta property="og:title" content="页面未找到 · 独木舟">
+  <meta property="og:description" content="页面未找到。回到独木舟，继续探索。">
   <meta property="og:url" content="https://idumuzhou.github.io/">
   <meta property="og:image" content="https://idumuzhou.github.io/assets/canoe-dark.webp">
-  
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/favicon-180.png">
   <title>页面未找到 · 独木舟</title>
-<meta name="robots" content="noindex">
   <script>
     (() => {
       let theme = 'system';
@@ -24,72 +23,40 @@
         ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     })();
   </script>
-  <link rel="stylesheet" href="/css/site.css?v=voyage-1">
-  <script src="/js/site.js?v=voyage-1" defer>
-</script>
-  <noscript>
-<style>.language,.appearance{display:none}</style>
-</noscript>
+  <link rel="stylesheet" href="/css/site.css?v=voyage-2">
+  <script src="/js/site.js?v=voyage-2" defer></script>
+  <noscript><style>.language,.appearance,.menu-toggle{display:none}.nav-drawer{display:flex}</style></noscript>
 </head>
 <body data-page="404">
 <a class="skip" href="#main" data-zh="跳转到正文" data-en="Skip to content">跳转到正文</a>
-<header class="top">
-<a class="identity" href="/" aria-label="独木舟首页" data-aria-zh="独木舟首页" data-aria-en="Dumuzhou home">
-<svg viewBox="0 0 100 64" aria-hidden="true">
-<path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
-<path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
-</svg>
-<span>
-<b>独木舟</b>
-<small>DUMUZHOU</small>
-</span>
-</a>
-<nav aria-label="主导航" data-aria-zh="主导航" data-aria-en="Main navigation">
-<a class="nav-github" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span>
-</a>
-<div class="language" aria-label="语言" data-aria-zh="语言" data-aria-en="Language">
-<button class="selected" data-lang="zh">中</button>
-<i>/</i>
-<button data-lang="en">EN</button>
-</div>
-<details class="appearance">
-<summary aria-label="主题设置" data-aria-zh="主题设置" data-aria-en="Appearance">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<circle cx="12" cy="12" r="7"/>
-<path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/>
-</svg>
-</summary>
-<div class="theme-options">
-<button data-theme-choice="light" data-zh="浅色" data-en="Light">浅色</button>
-<button data-theme-choice="dark" data-zh="深色" data-en="Dark">深色</button>
-<button data-theme-choice="system" data-zh="跟随系统" data-en="System">跟随系统</button>
-</div>
-</details>
-</nav>
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="identity" href="/" aria-label="独木舟首页" data-aria-zh="独木舟首页" data-aria-en="Dumuzhou home">
+      <svg viewBox="0 0 100 64" aria-hidden="true"><path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/><path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/></svg>
+      <span><b>独木舟</b><small>DUMUZHOU</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="打开菜单" data-aria-zh="打开菜单" data-aria-en="Open menu"><span></span><span></span></button>
+    <div class="nav-drawer" id="site-menu">
+      <nav class="primary-nav" aria-label="主导航" data-aria-zh="主导航" data-aria-en="Main navigation">
+        <a href="/#about" data-zh="关于我" data-en="About">关于我</a>
+        <a href="/#principles" data-zh="工作方式" data-en="Method">工作方式</a>
+        <a href="/#toolkit" data-zh="技术范围" data-en="Toolkit">技术范围</a>
+        <a class="nav-github" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+      <div class="nav-controls">
+        <div class="language" aria-label="语言" data-aria-zh="语言" data-aria-en="Language"><button class="selected" type="button" data-lang="zh" aria-pressed="true">中</button><i aria-hidden="true">/</i><button type="button" data-lang="en" aria-pressed="false">EN</button></div>
+        <details class="appearance"><summary aria-label="主题设置" data-aria-zh="主题设置" data-aria-en="Appearance"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/></svg></summary><div class="theme-options"><button type="button" data-theme-choice="light" data-zh="浅色" data-en="Light">浅色</button><button type="button" data-theme-choice="dark" data-zh="深色" data-en="Dark">深色</button><button type="button" data-theme-choice="system" data-zh="跟随系统" data-en="System">跟随系统</button></div></details>
+      </div>
+    </div>
+  </div>
 </header>
-<main id="main" class="not-found">
-  <p class="eyebrow">
-<span class="short-line">
-</span>404 / OFF COURSE</p>
-  <div class="error-code" aria-hidden="true">404<span>.</span>
-</div>
+<main id="main" class="not-found" data-reveal>
+  <p class="eyebrow"><span class="short-line"></span><span data-zh="偏离航线" data-en="Off course">偏离航线</span></p>
+  <div class="error-code" aria-hidden="true">404<span>.</span></div>
   <h1 data-zh="这片水域，没有页面。" data-en="No page on this horizon.">这片水域，没有页面。</h1>
   <p class="description" data-zh="页面已移除，或地址有误。回到独木舟，继续探索。" data-en="This page has been removed, or the address is incorrect. Return home to keep exploring.">页面已移除，或地址有误。回到独木舟，继续探索。</p>
-  <a class="primary" href="/">
-<span data-zh="返回首页" data-en="Back to home">返回首页</span>
-<span class="arrow" aria-hidden="true">↗</span>
-</a>
+  <a class="primary" href="/"><span data-zh="返回首页" data-en="Back to home">返回首页</span><span class="arrow" aria-hidden="true">↗</span></a>
 </main>
-<footer>
-<a class="footer-logo" href="/">
-<svg viewBox="0 0 100 64" aria-hidden="true">
-<path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
-<path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
-</svg>
-<span>DUMUZHOU</span>
-</a>
-<span data-zh="以自己的节奏，向前。" data-en="Forward, at my own pace.">以自己的节奏，向前。</span>
-<a href="#main" aria-label="回到顶部" data-aria-zh="回到顶部" data-aria-en="Back to top">↑</a>
-</footer>
+<footer class="site-footer"><a class="footer-logo" href="/"><svg viewBox="0 0 100 64" aria-hidden="true"><path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/><path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/></svg><span>DUMUZHOU</span></a><span data-zh="以自己的节奏，向前。" data-en="Forward, at my own pace.">以自己的节奏，向前。</span><a href="#main" aria-label="回到顶部" data-aria-zh="回到顶部" data-aria-en="Back to top">↑</a></footer>
 </body>
 </html>

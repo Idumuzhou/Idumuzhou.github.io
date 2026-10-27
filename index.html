@@ -2,19 +2,21 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#0a0b0e">
-  <meta name="description" content="独木舟的个人空间。自律给我自由，记录学习，探索技术。">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="独木舟的个人数字空间：Android 开发、产品构建与持续学习。">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="独木舟 · 数字航行">
-  <meta property="og:description" content="自律给我自由，记录学习，探索技术。">
+  <meta property="og:title" content="独木舟 · 个人数字空间">
+  <meta property="og:description" content="Android 开发、产品构建与持续学习。">
   <meta property="og:url" content="https://idumuzhou.github.io/">
   <meta property="og:image" content="https://idumuzhou.github.io/assets/canoe-dark.webp">
+  <meta property="og:site_name" content="Dumuzhou">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://idumuzhou.github.io/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/favicon-180.png">
-  <title>独木舟 · 数字航行</title>
+  <title>独木舟 · 个人数字空间</title>
   <script>
     (() => {
       let theme = 'system';
@@ -23,116 +25,109 @@
         ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     })();
   </script>
-  <link rel="stylesheet" href="/css/site.css?v=voyage-1">
-  <script src="/js/site.js?v=voyage-1" defer>
-</script>
-  <noscript>
-<style>.language,.appearance{display:none}</style>
-</noscript>
+  <link rel="stylesheet" href="/css/site.css?v=voyage-2">
+  <script src="/js/site.js?v=voyage-2" defer></script>
+  <noscript><style>.language,.appearance,.menu-toggle{display:none}.nav-drawer{display:flex}</style></noscript>
 </head>
 <body>
 <a class="skip" href="#main" data-zh="跳转到正文" data-en="Skip to content">跳转到正文</a>
-<header class="top">
-<a class="identity" href="/" aria-label="独木舟首页" data-aria-zh="独木舟首页" data-aria-en="Dumuzhou home">
-<svg viewBox="0 0 100 64" aria-hidden="true">
-<path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
-<path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
-</svg>
-<span>
-<b>独木舟</b>
-<small>DUMUZHOU</small>
-</span>
-</a>
-<nav aria-label="主导航" data-aria-zh="主导航" data-aria-en="Main navigation">
-<a class="nav-github" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span>
-</a>
-<div class="language" aria-label="语言" data-aria-zh="语言" data-aria-en="Language">
-<button class="selected" data-lang="zh">中</button>
-<i>/</i>
-<button data-lang="en">EN</button>
-</div>
-<details class="appearance">
-<summary aria-label="主题设置" data-aria-zh="主题设置" data-aria-en="Appearance">
-<svg viewBox="0 0 24 24" aria-hidden="true">
-<circle cx="12" cy="12" r="7"/>
-<path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/>
-</svg>
-</summary>
-<div class="theme-options">
-<button data-theme-choice="light" data-zh="浅色" data-en="Light">浅色</button>
-<button data-theme-choice="dark" data-zh="深色" data-en="Dark">深色</button>
-<button data-theme-choice="system" data-zh="跟随系统" data-en="System">跟随系统</button>
-</div>
-</details>
-</nav>
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="identity" href="#home" aria-label="独木舟首页" data-aria-zh="独木舟首页" data-aria-en="Dumuzhou home">
+      <svg viewBox="0 0 100 64" aria-hidden="true">
+        <path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
+        <path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
+      </svg>
+      <span><b>独木舟</b><small>DUMUZHOU</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="打开菜单" data-aria-zh="打开菜单" data-aria-en="Open menu">
+      <span></span><span></span>
+    </button>
+    <div class="nav-drawer" id="site-menu">
+      <nav class="primary-nav" aria-label="主导航" data-aria-zh="主导航" data-aria-en="Main navigation">
+        <a data-nav-link="about" href="#about" data-zh="关于我" data-en="About">关于我</a>
+        <a data-nav-link="principles" href="#principles" data-zh="工作方式" data-en="Method">工作方式</a>
+        <a data-nav-link="toolkit" href="#toolkit" data-zh="技术范围" data-en="Toolkit">技术范围</a>
+        <a class="nav-github" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      </nav>
+      <div class="nav-controls">
+        <div class="language" aria-label="语言" data-aria-zh="语言" data-aria-en="Language">
+          <button class="selected" type="button" data-lang="zh" aria-pressed="true">中</button>
+          <i aria-hidden="true">/</i>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <details class="appearance">
+          <summary aria-label="主题设置" data-aria-zh="主题设置" data-aria-en="Appearance">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="7"/><path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/></svg>
+          </summary>
+          <div class="theme-options">
+            <button type="button" data-theme-choice="light" data-zh="浅色" data-en="Light">浅色</button>
+            <button type="button" data-theme-choice="dark" data-zh="深色" data-en="Dark">深色</button>
+            <button type="button" data-theme-choice="system" data-zh="跟随系统" data-en="System">跟随系统</button>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
 </header>
 <main id="main">
-<section class="hero">
-<div class="hero-title">
-<p class="eyebrow">
-<span class="short-line">
-</span>
-<span data-zh="数字航行" data-en="A DIGITAL VOYAGE">数字航行</span>
-</p>
-<h1>独木舟<span class="title-dot">.</span>
-</h1>
-<p class="english-name">DUMUZHOU</p>
-</div>
-<div class="hero-copy">
-<p class="motto" data-zh="自律给我自由。" data-en="Discipline gives me freedom.">自律给我自由。</p>
-<p class="description" data-zh="记录学习，探索技术。" data-en="Learning. Exploring. Moving forward.">记录学习，探索技术。</p>
-</div>
-<figure class="hero-art">
-<img class="canoe dark-art" src="/assets/canoe-dark.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024" fetchpriority="high">
-<img class="canoe light-art" src="/assets/canoe-light.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024" fetchpriority="high">
-</figure>
-<a class="primary" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">
-<span data-zh="访问 GitHub" data-en="Explore GitHub">访问 GitHub</span>
-<span class="arrow">↗</span>
-</a>
-<div class="hero-bottom">
-<span>INDEPENDENT SPIRIT. OPEN HORIZONS.</span>
-<a href="#about">
-<span data-zh="向下探索" data-en="SCROLL TO EXPLORE">向下探索</span> <span>↓</span>
-</a>
-</div>
-</section>
-<section class="about" id="about">
-<div class="about-heading">
-<p class="eyebrow">
-<span class="short-line">
-</span>
-<span data-zh="关于这里" data-en="A PERSONAL SPACE">关于这里</span>
-</p>
-<h2>
-<span data-zh="一叶舟，" data-en="One canoe.">一叶舟，</span>
-<br>
-<span class="soft" data-zh="无限可能。" data-en="Open possibilities.">无限可能。</span>
-</h2>
-</div>
-<div class="about-copy">
-<p data-zh="这是我的一方数字空间。留下学习中的发现，也给新的想法留一点位置。" data-en="A small corner of the digital world. A place for what I learn, and a little room for what comes next.">这是我的一方数字空间。留下学习中的发现，也给新的想法留一点位置。</p>
-<div class="signature">
-<img src="/assets/avatar.jpeg" alt="Dumuzhou" width="42" height="42" loading="lazy">
-<div>
-<b>独木舟</b>
-<span>Dumuzhou</span>
-</div>
-<a href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer" aria-label="GitHub">↗</a>
-</div>
-</div>
-</section>
+  <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-grid">
+      <div class="hero-copy" data-reveal>
+        <p class="eyebrow"><span class="short-line"></span><span data-zh="个人数字空间" data-en="A personal digital space">个人数字空间</span></p>
+        <h1 id="hero-title" data-zh="把想法，做成可以使用的东西。" data-en="I turn ideas into things people can use.">把想法，做成可以使用的东西。</h1>
+        <p class="hero-role" data-zh="Android 开发者 · 产品构建者" data-en="Android developer · Product builder">Android 开发者 · 产品构建者</p>
+        <p class="hero-description" data-zh="我在这里记录学习、拆解问题，也给下一次尝试留一点空间。" data-en="A space for learning in public, making sense of problems, and leaving room for the next attempt.">我在这里记录学习、拆解问题，也给下一次尝试留一点空间。</p>
+        <div class="hero-actions">
+          <a class="primary" href="#about"><span data-zh="阅读个人介绍" data-en="Read my introduction">阅读个人介绍</span><span class="arrow" aria-hidden="true">↘</span></a>
+          <a class="text-link" href="#principles"><span data-zh="了解我的方式" data-en="How I work">了解我的方式</span><span aria-hidden="true">↓</span></a>
+        </div>
+        <div class="hero-meta"><span>ANDROID</span><span>PRODUCT</span><span>AI</span></div>
+      </div>
+      <figure class="hero-art" data-reveal>
+        <img class="canoe dark-art" src="/assets/canoe-dark.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024" fetchpriority="high">
+        <img class="canoe light-art" src="/assets/canoe-light.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024">
+        <figcaption data-zh="沿着自己的航线，持续前进。" data-en="Keep moving along your own course.">沿着自己的航线，持续前进。</figcaption>
+      </figure>
+    </div>
+    <div class="hero-bottom"><span>INDEPENDENT SPIRIT. OPEN HORIZONS.</span><a href="#about"><span data-zh="向下探索" data-en="Scroll to explore">向下探索</span><span aria-hidden="true">↓</span></a></div>
+  </section>
+
+  <section class="about section-shell" id="about" aria-labelledby="about-title" data-reveal>
+    <div class="section-label"><span>01</span><span data-zh="关于我" data-en="About me">关于我</span></div>
+    <div class="about-heading"><p class="eyebrow"><span class="short-line"></span><span data-zh="从想法到落地" data-en="From ideas to something real">从想法到落地</span></p><h2 id="about-title"><span data-zh="先把问题看清，" data-en="See the problem clearly.">先把问题看清，</span><br><span class="soft" data-zh="再把东西做出来。" data-en="Then make something useful.">再把东西做出来。</span></h2></div>
+    <div class="about-content">
+      <p class="lead" data-zh="我是独木舟，一名 Android 开发者和产品构建者。我喜欢从想法、体验和架构开始，把一个模糊的念头慢慢变成可以被使用的产品。" data-en="I am Dumuzhou, an Android developer and product builder. I like starting with an idea, an experience, or an architectural question, then shaping it into something people can use.">我是独木舟，一名 Android 开发者和产品构建者。我喜欢从想法、体验和架构开始，把一个模糊的念头慢慢变成可以被使用的产品。</p>
+      <div class="about-signature"><img src="/assets/avatar.jpeg" alt="Dumuzhou" width="56" height="56" loading="lazy"><div><b>独木舟 / LuoXuLiang</b><span data-zh="杭州 · 持续构建中" data-en="Hangzhou · Still building">杭州 · 持续构建中</span></div><a href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer" aria-label="GitHub">↗</a></div>
+    </div>
+  </section>
+
+  <section class="tagline-section" aria-labelledby="tagline-title" data-reveal>
+    <p class="section-label"><span>02</span><span data-zh="一句话" data-en="A line to keep">一句话</span></p>
+    <h2 id="tagline-title" class="tagline-text"><span class="tag-word" data-tag-word data-zh="把想法做成产品，" data-en="Turn ideas into products.">把想法做成产品，</span><span class="tag-word" data-tag-word data-zh="把学习留下来。" data-en="Leave the learning where people can see it.">把学习留下来。</span></h2>
+  </section>
+
+  <section class="principles section-shell" id="principles" aria-labelledby="principles-title" data-reveal>
+    <div class="section-label"><span>03</span><span data-zh="工作方式" data-en="Method">工作方式</span></div>
+    <div class="section-intro"><p class="eyebrow"><span class="short-line"></span><span data-zh="一个可重复的节奏" data-en="A repeatable rhythm">一个可重复的节奏</span></p><h2 id="principles-title" data-zh="Build → Ship → Learn → Iterate" data-en="Build → Ship → Learn → Iterate">Build → Ship → Learn → Iterate</h2></div>
+    <div class="principles-list">
+      <article class="principle"><span class="principle-number">01</span><h3 data-zh="看清问题" data-en="Frame">看清问题</h3><p data-zh="先理解真正需要被解决的事情，再决定从哪里开始。" data-en="Understand what needs solving before deciding where to begin.">先理解真正需要被解决的事情，再决定从哪里开始。</p></article>
+      <article class="principle"><span class="principle-number">02</span><h3 data-zh="做出版本" data-en="Build">做出版本</h3><p data-zh="保持足够小，尽快让想法变成可以触摸的东西。" data-en="Keep the first version small enough to become tangible quickly.">保持足够小，尽快让想法变成可以触摸的东西。</p></article>
+      <article class="principle"><span class="principle-number">03</span><h3 data-zh="交付出去" data-en="Ship">交付出去</h3><p data-zh="让产品离开本地环境，进入真实的使用场景。" data-en="Move the work out of a local environment and into real use.">让产品离开本地环境，进入真实的使用场景。</p></article>
+      <article class="principle"><span class="principle-number">04</span><h3 data-zh="继续迭代" data-en="Iterate">继续迭代</h3><p data-zh="从反馈里学习，把每一次上线变成下一次判断的依据。" data-en="Learn from feedback and let each release inform the next decision.">从反馈里学习，把每一次上线变成下一次判断的依据。</p></article>
+    </div>
+  </section>
+
+  <section class="toolkit section-shell" id="toolkit" aria-labelledby="toolkit-title" data-reveal>
+    <div class="section-label"><span>04</span><span data-zh="技术范围" data-en="Toolkit">技术范围</span></div>
+    <div class="toolkit-grid"><div class="section-intro"><p class="eyebrow"><span class="short-line"></span><span data-zh="工具只是入口" data-en="Tools are the entry point">工具只是入口</span></p><h2 id="toolkit-title" data-zh="我关心产品如何被做出来。" data-en="I care about how products become real.">我关心产品如何被做出来。</h2></div><div class="tool-list"><div><span>01</span><b>Android / Kotlin</b><p data-zh="移动体验、Jetpack Compose 与可维护的界面系统。" data-en="Mobile experiences, Jetpack Compose, and maintainable interface systems.">移动体验、Jetpack Compose 与可维护的界面系统。</p></div><div><span>02</span><b>Go / Redis / PostgreSQL</b><p data-zh="可靠的服务、清晰的数据边界和可以继续扩展的后端。" data-en="Reliable services, clear data boundaries, and backends that can keep growing.">可靠的服务、清晰的数据边界和可以继续扩展的后端。</p></div><div><span>03</span><b>Product / UI / Architecture</b><p data-zh="把体验、结构和实现放在同一张图里思考。" data-en="Think about experience, structure, and implementation on the same map.">把体验、结构和实现放在同一张图里思考。</p></div><div><span>04</span><b>AI / Exploration</b><p data-zh="保持好奇，把新工具放进真实的问题里验证。" data-en="Stay curious and test new tools against real problems.">保持好奇，把新工具放进真实的问题里验证。</p></div></div></div>
+  </section>
+
+  <section class="closing section-shell" id="connect" aria-labelledby="closing-title" data-reveal>
+    <div><p class="eyebrow"><span class="short-line"></span><span data-zh="继续向前" data-en="Keep moving">继续向前</span></p><h2 id="closing-title"><span data-zh="保持好奇，" data-en="Stay curious,">保持好奇，</span><br><span class="soft" data-zh="持续探索。" data-en="keep exploring.">持续探索。</span></h2></div>
+    <a class="closing-link" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer"><span data-zh="在 GitHub 上找到我" data-en="Find me on GitHub">在 GitHub 上找到我</span><strong>GitHub</strong><b aria-hidden="true">↗</b></a>
+  </section>
 </main>
-<footer>
-<a class="footer-logo" href="/">
-<svg viewBox="0 0 100 64" aria-hidden="true">
-<path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
-<path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
-</svg>
-<span>DUMUZHOU</span>
-</a>
-<span data-zh="以自己的节奏，向前。" data-en="Forward, at my own pace.">以自己的节奏，向前。</span>
-<a href="#main" aria-label="回到顶部" data-aria-zh="回到顶部" data-aria-en="Back to top">↑</a>
-</footer>
+<footer class="site-footer"><a class="footer-logo" href="#home"><svg viewBox="0 0 100 64" aria-hidden="true"><path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/><path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/></svg><span>DUMUZHOU</span></a><span data-zh="以自己的节奏，向前。" data-en="Forward, at my own pace.">以自己的节奏，向前。</span><a href="#home" aria-label="回到顶部" data-aria-zh="回到顶部" data-aria-en="Back to top">↑</a></footer>
 </body>
 </html>

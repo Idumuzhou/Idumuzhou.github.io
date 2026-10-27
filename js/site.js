@@ -2,10 +2,13 @@
   'use strict';
 
   const root = document.documentElement;
+  const body = document.body;
   const systemTheme = matchMedia('(prefers-color-scheme: dark)');
   const appearance = document.querySelector('.appearance');
-  const summary = appearance.querySelector('summary');
-  const isNotFound = document.body.dataset.page === '404';
+  const summary = appearance ? appearance.querySelector('summary') : null;
+  const menuToggle = document.querySelector('.menu-toggle');
+  const siteHeader = document.querySelector('.site-header');
+  const isNotFound = body.dataset.page === '404';
   const read = (key) => {
     try { return localStorage.getItem(key); } catch (_) { return null; }
   };
@@ -16,10 +19,13 @@
   let theme = ['light', 'dark', 'system'].includes(savedTheme) ? savedTheme : 'system';
   let language = read('dumu-language') === 'en' ? 'en' : 'zh';
 
+  root.classList.add('js');
+
   function applyTheme() {
     const effectiveTheme = theme === 'system' ? (systemTheme.matches ? 'dark' : 'light') : theme;
     root.dataset.theme = effectiveTheme;
-    document.querySelector('meta[name="theme-color"]').content = effectiveTheme === 'dark' ? '#0a0b0e' : '#f5f6f8';
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+    if (themeColor) themeColor.content = effectiveTheme === 'dark' ? '#000000' : '#f5f6f8';
     document.querySelectorAll('[data-theme-choice]').forEach((button) => {
       const selected = button.dataset.themeChoice === theme;
       button.classList.toggle('active', selected);
@@ -46,13 +52,23 @@
     });
     document.title = isNotFound
       ? (english ? 'Page not found · Dumuzhou' : '页面未找到 · 独木舟')
-      : (english ? 'Dumuzhou · A digital voyage' : '独木舟 · 数字航行');
+      : (english ? 'Dumuzhou · Personal digital space' : '独木舟 · 个人数字空间');
     const description = english
-      ? 'A personal space by Dumuzhou. Discipline gives me freedom. Learning and exploring technology.'
-      : '独木舟的个人空间。自律给我自由，记录学习，探索技术。';
-    document.querySelector('meta[name="description"]').content = description;
-    document.querySelector('meta[property="og:title"]').content = document.title;
-    document.querySelector('meta[property="og:description"]').content = description;
+      ? 'Dumuzhou is an Android developer and product builder exploring ideas, systems, and useful products.'
+      : '独木舟的个人数字空间：Android 开发、产品构建与持续学习。';
+    document.querySelector('meta[name="description"]')?.setAttribute('content', description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', document.title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', description);
+  }
+
+  function setMenu(open) {
+    if (!siteHeader || !menuToggle) return;
+    siteHeader.classList.toggle('menu-open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+    menuToggle.setAttribute('aria-label', open
+      ? (language === 'en' ? 'Close menu' : '关闭菜单')
+      : (language === 'en' ? 'Open menu' : '打开菜单'));
+    body.classList.toggle('menu-open', open);
   }
 
   document.querySelectorAll('[data-theme-choice]').forEach((button) => {
@@ -60,8 +76,8 @@
       theme = button.dataset.themeChoice;
       save('dumu-theme', theme);
       applyTheme();
-      appearance.open = false;
-      summary.focus();
+      if (appearance) appearance.open = false;
+      summary?.focus();
     });
   });
   document.querySelectorAll('[data-lang]').forEach((button) => {
@@ -69,38 +85,77 @@
       language = button.dataset.lang;
       save('dumu-language', language);
       applyLanguage();
+      if (siteHeader?.classList.contains('menu-open')) setMenu(true);
     });
   });
+  menuToggle?.addEventListener('click', () => {
+    setMenu(!siteHeader.classList.contains('menu-open'));
+  });
+  document.querySelectorAll('[data-nav-link]').forEach((link) => {
+    link.addEventListener('click', () => setMenu(false));
+  });
+  document.querySelector('.identity')?.addEventListener('click', () => setMenu(false));
   document.addEventListener('click', (event) => {
-    if (!appearance.contains(event.target)) appearance.open = false;
+    if (appearance && !appearance.contains(event.target)) appearance.open = false;
   });
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && appearance.open) {
-      appearance.open = false;
-      summary.focus();
+    if (event.key === 'Escape') {
+      if (appearance?.open) {
+        appearance.open = false;
+        summary?.focus();
+      }
+      if (siteHeader?.classList.contains('menu-open')) {
+        setMenu(false);
+        menuToggle?.focus();
+      }
     }
   });
   systemTheme.addEventListener('change', () => {
     if (theme === 'system') applyTheme();
   });
+
   applyTheme();
   applyLanguage();
 
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-  const motion = matchMedia('(pointer: fine) and (min-width: 901px) and (prefers-reduced-motion: no-preference)');
-  const resetMotion = () => {
-    hero.style.setProperty('--move-x', '0px');
-    hero.style.setProperty('--move-y', '0px');
-  };
-  hero.addEventListener('pointermove', (event) => {
-    if (!motion.matches) return;
-    const bounds = hero.getBoundingClientRect();
-    const x = Math.max(-8, Math.min(8, (event.clientX - bounds.left - bounds.width / 2) / bounds.width * 16));
-    const y = Math.max(-8, Math.min(8, (event.clientY - bounds.top - bounds.height / 2) / bounds.height * 16));
-    hero.style.setProperty('--move-x', `${x}px`);
-    hero.style.setProperty('--move-y', `${y}px`);
-  });
-  hero.addEventListener('pointerleave', resetMotion);
-  motion.addEventListener('change', resetMotion);
+  const revealItems = document.querySelectorAll('[data-reveal]');
+  const tagWords = document.querySelectorAll('[data-tag-word]');
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    if (tagWords.length) {
+      const tagObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.45 });
+      tagWords.forEach((word) => tagObserver.observe(word));
+    }
+
+    const navLinks = [...document.querySelectorAll('[data-nav-link]')];
+    const sections = navLinks.map((link) => document.getElementById(link.dataset.navLink)).filter(Boolean);
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach((link) => {
+          const active = link.dataset.navLink === entry.target.id;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'location');
+          else link.removeAttribute('aria-current');
+        });
+      });
+    }, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
+    sections.forEach((section) => activeObserver.observe(section));
+  } else {
+    revealItems.forEach((item) => item.classList.add('is-visible'));
+    tagWords.forEach((word) => word.classList.add('is-visible'));
+  }
 })();
