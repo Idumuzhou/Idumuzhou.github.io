@@ -4,6 +4,7 @@
   const root = document.documentElement;
   const body = document.body;
   const systemTheme = matchMedia('(prefers-color-scheme: dark)');
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const appearance = document.querySelector('.appearance');
   const summary = appearance ? appearance.querySelector('summary') : null;
   const menuToggle = document.querySelector('.menu-toggle');
@@ -76,6 +77,7 @@
       theme = button.dataset.themeChoice;
       save('dumu-theme', theme);
       applyTheme();
+      mountActiveSvga();
       if (appearance) appearance.open = false;
       summary?.focus();
     });
@@ -111,11 +113,54 @@
     }
   });
   systemTheme.addEventListener('change', () => {
-    if (theme === 'system') applyTheme();
+    if (theme === 'system') {
+      applyTheme();
+      mountActiveSvga();
+    }
   });
+
+  const svgaStage = document.querySelector('[data-visual-stage]');
+  const svgaCanvases = [...document.querySelectorAll('[data-svga]')];
+  const svgaPlayers = new Map();
+
+  async function mountSvga(canvas) {
+    if (!svgaStage || !canvas || !window.SVGA?.Parser || !window.SVGA?.Player) return false;
+    if (svgaPlayers.has(canvas)) {
+      const mounted = await svgaPlayers.get(canvas);
+      if (mounted) svgaStage.classList.add('is-svga-ready');
+      return mounted;
+    }
+    const promise = (async () => {
+      try {
+        const parser = new SVGA.Parser({ isDisableWebWorker: false });
+        const data = await parser.load(canvas.dataset.svga);
+        const player = new SVGA.Player(canvas);
+        await player.mount(data);
+        if (!reducedMotion.matches) player.start();
+        canvas.dataset.svgaMounted = 'true';
+        return true;
+      } catch (_) {
+        canvas.dataset.svgaMounted = 'false';
+        return false;
+      }
+    })();
+    svgaPlayers.set(canvas, promise);
+    const mounted = await promise;
+    if (mounted) svgaStage.classList.add('is-svga-ready');
+    return mounted;
+  }
+
+  function mountActiveSvga() {
+    if (!svgaStage || !svgaCanvases.length) return;
+    svgaStage.classList.remove('is-svga-ready');
+    const activeClass = root.dataset.theme === 'light' ? 'light-art' : 'dark-art';
+    const canvas = svgaCanvases.find((item) => item.classList.contains(activeClass));
+    mountSvga(canvas);
+  }
 
   applyTheme();
   applyLanguage();
+  mountActiveSvga();
 
   const revealItems = document.querySelectorAll('[data-reveal]');
   const tagWords = document.querySelectorAll('[data-tag-word]');
