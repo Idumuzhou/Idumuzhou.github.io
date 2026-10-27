@@ -1,0 +1,11 @@
+# 主视觉生成记录
+
+工具：内置 `image_gen.imagegen`（非 CLI）。Logo 使用手工 SVG 路径，不使用生成图像。
+
+## 深色独木舟 — 原始生成
+
+Use case: stylized-concept. Asset type: premium personal website hero artwork, NO text or UI. Create a photorealistic high-end 3D product sculpture of a single slim open CANOE, an unmistakable canoe with pointed gently upturned ends and a hollow interior, sculpted from brushed silver aluminium. Its long axis runs from lower left towards upper right in an elegant three-quarter elevated view; we can see inside it. A thin continuous ice-blue light traces the gunwale, with delicate metal rib detailing inside. The canoe floats just above a polished graphite-black plane with a restrained soft reflection and shadow. Background is a seamless near-black #0A0B0E studio infinity, no horizon. Dramatic silver highlights, physically plausible brushed metal, deep black interior, subtle icy blue rim lighting, tactile, museum exhibition quality. Landscape composition 3:2: the canoe is fully visible with generous margin, fills about 75% of width, diagonal enough to feel dynamic but not vertical. Clean sophisticated editorial render. No water, no human, no rocks, no stars, no circles, no network diagrams, no labels, no letters, no watermark. The background at all four edges must be uniform #0A0B0E so it blends seamlessly into a webpage. Crisp subject with controlled reflections, not blown out.
+
+## 浅色独木舟 — 基于深色原图编辑
+
+Use case: lighting-weather. Edit this hero artwork to create a LIGHT THEME companion. Preserve the exact same canoe, camera, diagonal composition, dimensions, silhouette, every rib and seat and light strip placement. Only change the studio background and lighting: near-white cool #F5F6F8 seamless studio infinity and floor, soft bright environment lighting, silver brushed metal now reflecting the pale surroundings, defined dark undersurface for separation and a subtle soft grey reflection/shadow below the canoe. The thin ice-blue gunwale light remains but is slightly more saturated cobalt blue to read on the pale scene. Keep entire canoe fully inside frame in exact same location as reference. All four image edges must blend to uniform #F5F6F8. Photoreal product sculpture, exquisite polished details, premium gallery. No text, no extra object, no water, no labels.

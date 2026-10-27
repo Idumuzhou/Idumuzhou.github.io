@@ -2,37 +2,137 @@
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0a1014">
-  <meta name="description" content="自律给我自由！Dumuzhou 的个人主页与博客。">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0a0b0e">
+  <meta name="description" content="独木舟的个人空间。自律给我自由，记录学习，探索技术。">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Dumuzhou | 个人主页与博客">
-  <meta property="og:description" content="自律给我自由！Dumuzhou 的个人主页与博客。">
+  <meta property="og:title" content="独木舟 · 数字航行">
+  <meta property="og:description" content="自律给我自由，记录学习，探索技术。">
   <meta property="og:url" content="https://idumuzhou.github.io/">
+  <meta property="og:image" content="https://idumuzhou.github.io/assets/canoe-dark.webp">
   <link rel="canonical" href="https://idumuzhou.github.io/">
-  <link rel="icon" href="/images/favicon-32x32-next.png" type="image/png">
-  <script>try{var t=localStorage.getItem('dumu-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(e){}</script>
-  <link rel="stylesheet" href="/css/modern.css?v=2">
-  <script src="/js/site.js?v=2" defer></script>
-  <noscript><style>.site-controls{display:none}</style></noscript>
-  <title>Dumuzhou | 个人主页与博客</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/favicon-180.png">
+  <title>独木舟 · 数字航行</title>
+  <script>
+    (() => {
+      let theme = 'system';
+      try { theme = localStorage.getItem('dumu-theme') || 'system'; } catch (_) {}
+      document.documentElement.dataset.theme = ['dark', 'light'].includes(theme)
+        ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/site.css?v=voyage-1">
+  <script src="/js/site.js?v=voyage-1" defer>
+</script>
+  <noscript>
+<style>.language,.appearance{display:none}</style>
+</noscript>
 </head>
 <body>
-<a class="skip-link" href="#main">跳转到正文</a>
-<header class="site-header"><div class="header-inner wrap">
-  <a class="brand" href="/" aria-label="Dumuzhou 首页"><span class="brand-mark" aria-hidden="true">D<span>.</span></span><span class="brand-name">DUMUZHOU<span class="brand-sub">PERSONAL SPACE</span></span></a>
-  <nav aria-label="主导航"><a aria-current="page" href="/">首页</a><a  href="/archives/">文章</a><a class="nav-external" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></nav><div class="site-controls"><button class="language-button" type="button" aria-label="Switch to English">EN <span aria-hidden="true">↗</span></button><label class="theme-control"><span class="theme-icon" aria-hidden="true">◐</span><span class="sr-only theme-label">主题</span><select class="theme-select" aria-label="主题"><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></select></label></div>
-</div></header><main id="main">
-<section class="hero wrap" aria-labelledby="hero-title">
-  <div class="hero-copy"><p class="eyebrow"><span class="status-dot"></span> PERSONAL SPACE <span class="eyebrow-divider">/</span> 个人空间</p>
-  <p class="hero-kicker">HELLO, I'M</p><h1 id="hero-title">Dumu<span>zhou</span><i>.</i></h1>
-  <p class="hero-motto">自律给我自由！</p><p class="hero-description">记录学习，分享思考。<br>在这里，留下关于技术的点滴。</p>
-  <div class="hero-actions"><a class="button primary" href="#writing">阅读文章 <span aria-hidden="true">↘</span></a><a class="button secondary" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">访问 GitHub <span aria-hidden="true">↗</span></a></div></div>
-  <div class="hero-art" aria-hidden="true"><div class="signal-grid"></div><div class="signal-halo"></div><svg class="network-art" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="300" cy="300" r="247" class="net-outer"/><circle cx="300" cy="300" r="189" class="net-orbit"/><circle cx="300" cy="300" r="128" class="net-orbit inner"/><path class="net-lines" d="M108 165 218 118 300 176 399 109 501 181 451 272 518 368 420 463 328 421 220 491 105 403 150 300 108 165ZM218 118 214 232 150 300 246 352 220 491M399 109 385 230 451 272 365 350 420 463M105 403 246 352 328 421 365 350 518 368M214 232 300 176 385 230 365 350 246 352 214 232ZM150 300 214 232M451 272 385 230M300 176 300 300M246 352 300 300 365 350"/><g class="net-nodes"><circle cx="108" cy="165" r="4"/><circle cx="218" cy="118" r="5"/><circle cx="399" cy="109" r="3"/><circle cx="501" cy="181" r="5"/><circle cx="451" cy="272" r="4"/><circle cx="518" cy="368" r="3"/><circle cx="420" cy="463" r="5"/><circle cx="220" cy="491" r="4"/><circle cx="105" cy="403" r="3"/><circle cx="150" cy="300" r="5"/><circle cx="214" cy="232" r="4"/><circle cx="385" cy="230" r="5"/><circle cx="246" cy="352" r="4"/><circle cx="365" cy="350" r="4"/></g></svg><div class="core"><span class="core-bracket">[</span><span class="core-symbol">D<span>.</span></span><span class="core-bracket">]</span></div><div class="art-label label-top"><span class="label-dot"></span> NEURAL / SPACE</div><div class="art-label label-bottom">IDEAS IN MOTION <span>↗</span></div><div class="art-tick tick-one">+</div><div class="art-tick tick-two">+</div></div>
-  <div class="hero-bottom"><span>SCROLL TO EXPLORE <span aria-hidden="true">↓</span></span><span>DESIGNED FOR CURIOSITY</span></div>
+<a class="skip" href="#main" data-zh="跳转到正文" data-en="Skip to content">跳转到正文</a>
+<header class="top">
+<a class="identity" href="/" aria-label="独木舟首页" data-aria-zh="独木舟首页" data-aria-en="Dumuzhou home">
+<svg viewBox="0 0 100 64" aria-hidden="true">
+<path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
+<path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
+</svg>
+<span>
+<b>独木舟</b>
+<small>DUMUZHOU</small>
+</span>
+</a>
+<nav aria-label="主导航" data-aria-zh="主导航" data-aria-en="Main navigation">
+<a class="nav-github" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span>
+</a>
+<div class="language" aria-label="语言" data-aria-zh="语言" data-aria-en="Language">
+<button class="selected" data-lang="zh">中</button>
+<i>/</i>
+<button data-lang="en">EN</button>
+</div>
+<details class="appearance">
+<summary aria-label="主题设置" data-aria-zh="主题设置" data-aria-en="Appearance">
+<svg viewBox="0 0 24 24" aria-hidden="true">
+<circle cx="12" cy="12" r="7"/>
+<path d="M12 5a7 7 0 0 1 0 14Z" fill="currentColor"/>
+</svg>
+</summary>
+<div class="theme-options">
+<button data-theme-choice="light" data-zh="浅色" data-en="Light">浅色</button>
+<button data-theme-choice="dark" data-zh="深色" data-en="Dark">深色</button>
+<button data-theme-choice="system" data-zh="跟随系统" data-en="System">跟随系统</button>
+</div>
+</details>
+</nav>
+</header>
+<main id="main">
+<section class="hero">
+<div class="hero-title">
+<p class="eyebrow">
+<span class="short-line">
+</span>
+<span data-zh="数字航行" data-en="A DIGITAL VOYAGE">数字航行</span>
+</p>
+<h1>独木舟<span class="title-dot">.</span>
+</h1>
+<p class="english-name">DUMUZHOU</p>
+</div>
+<div class="hero-copy">
+<p class="motto" data-zh="自律给我自由。" data-en="Discipline gives me freedom.">自律给我自由。</p>
+<p class="description" data-zh="记录学习，探索技术。" data-en="Learning. Exploring. Moving forward.">记录学习，探索技术。</p>
+</div>
+<figure class="hero-art">
+<img class="canoe dark-art" src="/assets/canoe-dark.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024" fetchpriority="high">
+<img class="canoe light-art" src="/assets/canoe-light.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024" fetchpriority="high">
+</figure>
+<a class="primary" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer">
+<span data-zh="访问 GitHub" data-en="Explore GitHub">访问 GitHub</span>
+<span class="arrow">↗</span>
+</a>
+<div class="hero-bottom">
+<span>INDEPENDENT SPIRIT. OPEN HORIZONS.</span>
+<a href="#about">
+<span data-zh="向下探索" data-en="SCROLL TO EXPLORE">向下探索</span> <span>↓</span>
+</a>
+</div>
 </section>
-<section class="writing-section" id="writing"><div class="wrap"><div class="section-heading"><div><p class="eyebrow"><span class="section-number">01 /</span> THE JOURNAL</p><h2>文字<span>与</span>记录<span class="accent">.</span></h2><p>一些关于 Android 与学习的记录。</p></div><a class="text-link" href="/archives/">所有文章 <span aria-hidden="true">↗</span></a></div><div class="post-list"><a class="post-row" href="/2019/03/13/hello-world/"><span class="post-index">01 <span class="index-line"></span></span><span class="post-info"><span class="post-title">Hello Android</span><span class="post-description">关于 Android 的一张图。</span></span><span class="post-date"><span>2019.03.13</span><span class="row-arrow" aria-hidden="true">↗</span></span></a>
-<a class="post-row" href="/2019/03/13/Android-Interview/"><span class="post-index">02 <span class="index-line"></span></span><span class="post-info"><span class="post-title">Android面试经</span><span class="post-description">Java 与 Android 面试题的记录。</span></span><span class="post-date"><span>2019.03.13</span><span class="row-arrow" aria-hidden="true">↗</span></span></a>
-<a class="post-row" href="/2019/03/13/Android-permission/"><span class="post-index">03 <span class="index-line"></span></span><span class="post-info"><span class="post-title">Android动态获取权限</span><span class="post-description">关于 Android 权限和权限组的笔记。</span></span><span class="post-date"><span>2019.03.13</span><span class="row-arrow" aria-hidden="true">↗</span></span></a></div></div></section>
-<section class="closing wrap"><div><p class="eyebrow"><span class="section-number">02 /</span> KEEP IN TOUCH</p><h2>保持好奇，<br><span>持续探索。</span></h2></div><a class="closing-link" href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer"><span>FIND ME ON</span><strong>GitHub</strong><b aria-hidden="true">↗</b></a></section>
-</main><footer class="site-footer"><div class="wrap footer-inner"><a class="footer-brand" href="/">DUMUZHOU<span>.</span></a><p>自律给我自由！</p><span class="footer-note">PERSONAL SPACE &nbsp; / &nbsp; EST. 2019</span></div></footer></body></html>
+<section class="about" id="about">
+<div class="about-heading">
+<p class="eyebrow">
+<span class="short-line">
+</span>
+<span data-zh="关于这里" data-en="A PERSONAL SPACE">关于这里</span>
+</p>
+<h2>
+<span data-zh="一叶舟，" data-en="One canoe.">一叶舟，</span>
+<br>
+<span class="soft" data-zh="无限可能。" data-en="Open possibilities.">无限可能。</span>
+</h2>
+</div>
+<div class="about-copy">
+<p data-zh="这是我的一方数字空间。留下学习中的发现，也给新的想法留一点位置。" data-en="A small corner of the digital world. A place for what I learn, and a little room for what comes next.">这是我的一方数字空间。留下学习中的发现，也给新的想法留一点位置。</p>
+<div class="signature">
+<img src="/assets/avatar.jpeg" alt="Dumuzhou" width="42" height="42" loading="lazy">
+<div>
+<b>独木舟</b>
+<span>Dumuzhou</span>
+</div>
+<a href="https://github.com/Idumuzhou" target="_blank" rel="noopener noreferrer" aria-label="GitHub">↗</a>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<a class="footer-logo" href="/">
+<svg viewBox="0 0 100 64" aria-hidden="true">
+<path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/>
+<path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/>
+</svg>
+<span>DUMUZHOU</span>
+</a>
+<span data-zh="以自己的节奏，向前。" data-en="Forward, at my own pace.">以自己的节奏，向前。</span>
+<a href="#main" aria-label="回到顶部" data-aria-zh="回到顶部" data-aria-en="Back to top">↑</a>
+</footer>
+</body>
+</html>
