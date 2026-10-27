@@ -9,7 +9,6 @@
   <meta property="og:title" content="独木舟 · 个人数字空间">
   <meta property="og:description" content="Android 开发、产品构建与持续学习。">
   <meta property="og:url" content="https://idumuzhou.github.io/">
-  <meta property="og:image" content="https://idumuzhou.github.io/assets/canoe-dark.webp">
   <meta property="og:site_name" content="Dumuzhou">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://idumuzhou.github.io/">
@@ -25,9 +24,9 @@
         ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     })();
   </script>
-  <link rel="stylesheet" href="/css/site.css?v=voyage-3">
+  <link rel="stylesheet" href="/css/site.css?v=voyage-4">
   <script src="/js/svga.min.js?v=2.1.1" defer></script>
-  <script src="/js/site.js?v=voyage-3" defer></script>
+  <script src="/js/site.js?v=voyage-4" defer></script>
   <noscript><style>.language,.appearance,.menu-toggle{display:none}.nav-drawer{display:flex}</style></noscript>
 </head>
 <body>
@@ -73,6 +72,7 @@
 </header>
 <main id="main">
   <section class="hero" id="home" aria-labelledby="hero-title">
+    <div class="hero-heading" aria-hidden="true"><span>THE INDEPENDENT VOYAGE</span><span>EST. / ALWAYS IN MOTION</span></div>
     <div class="hero-grid">
       <div class="hero-copy" data-reveal>
         <p class="eyebrow"><span class="short-line"></span><span data-zh="个人数字空间" data-en="A personal digital space">个人数字空间</span></p>
@@ -88,16 +88,24 @@
       <figure class="hero-art" data-reveal data-svga-art>
         <div class="visual-stage" data-visual-stage>
           <div class="stage-grid" aria-hidden="true"></div>
+          <div class="stage-watermark" aria-hidden="true">D / Z</div>
           <div class="stage-orbit stage-orbit-one" aria-hidden="true"></div>
           <div class="stage-orbit stage-orbit-two" aria-hidden="true"></div>
           <div class="stage-corner stage-corner-tl" aria-hidden="true"></div>
           <div class="stage-corner stage-corner-br" aria-hidden="true"></div>
           <div class="stage-status"><i aria-hidden="true"></i><span data-zh="信号在线" data-en="SIGNAL ONLINE">信号在线</span><b>SVGA / 30 FPS</b></div>
           <div class="stage-readout stage-readout-top" aria-hidden="true"><span>LAT 30.2741° N</span><span>LONG 120.1551° E</span></div>
+          <svg class="svga-static" viewBox="0 0 1200 800" aria-hidden="true">
+            <ellipse cx="600" cy="608" rx="482" ry="86" fill="none" stroke="currentColor" stroke-width="4" opacity=".3"/>
+            <ellipse cx="600" cy="615" rx="370" ry="52" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="22 16" opacity=".45"/>
+            <path d="M172 414C258 494 414 526 632 516C824 508 956 450 1032 346C992 526 820 636 574 646C366 652 220 562 172 414Z" fill="var(--surface-3)" stroke="currentColor" stroke-width="6"/>
+            <path d="M204 430C320 490 452 504 634 496C808 488 942 436 1012 360C948 458 810 544 604 558C414 570 286 524 204 430Z" fill="var(--surface)"/>
+            <path d="M194 414C302 464 450 480 624 470C812 460 936 414 1024 340M824 170C794 286 758 392 688 556" fill="none" stroke="var(--fg)" stroke-width="6" stroke-linecap="round"/>
+            <path d="M814 166C848 142 886 126 922 118C908 160 884 194 846 216Z M682 548C662 584 632 610 598 630C626 634 650 624 670 606C690 588 700 568 704 548Z" fill="currentColor"/>
+            <g fill="var(--surface-3)" stroke="currentColor" stroke-width="2"><rect x="392" y="454" width="28" height="124" rx="10"/><rect x="566" y="478" width="28" height="118" rx="10"/><rect x="742" y="462" width="28" height="104" rx="10"/></g>
+          </svg>
           <canvas class="svga-canvas dark-art" data-svga="/assets/canoe-dark.svga" width="1536" height="1024" aria-hidden="true"></canvas>
           <canvas class="svga-canvas light-art" data-svga="/assets/canoe-light.svga" width="1536" height="1024" aria-hidden="true"></canvas>
-          <img class="svga-fallback dark-art" src="/assets/canoe-dark.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024" fetchpriority="high">
-          <img class="svga-fallback light-art" src="/assets/canoe-light.webp" alt="悬浮的银色独木舟" data-alt-zh="悬浮的银色独木舟" data-alt-en="A floating silver canoe" width="1536" height="1024">
           <div class="stage-scan" aria-hidden="true"></div>
           <div class="stage-readout stage-readout-bottom" aria-hidden="true"><span>VECTOR / 001</span><span>DRIFT +0.42</span></div>
         </div>
@@ -117,6 +125,7 @@
   </section>
 
   <section class="tagline-section" aria-labelledby="tagline-title" data-reveal>
+    <div class="tagline-compass" aria-hidden="true"><span>✳</span><small>KEEP<br>EXPLORING</small></div>
     <p class="section-label"><span>02</span><span data-zh="一句话" data-en="A line to keep">一句话</span></p>
     <h2 id="tagline-title" class="tagline-text"><span class="tag-word" data-tag-word data-zh="把想法做成产品，" data-en="Turn ideas into products.">把想法做成产品，</span><span class="tag-word" data-tag-word data-zh="把学习留下来。" data-en="Leave the learning where people can see it.">把学习留下来。</span></h2>
   </section>
