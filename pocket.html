@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#07080a">
+  <meta name="description" content="在一台掌上游戏机里探索独木舟的个人空间。">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <title>掌上独木舟 · Dumuzhou</title>
+  <script>
+    (() => {
+      let theme = 'system';
+      try { theme = localStorage.getItem('dumu-theme') || 'system'; } catch (_) {}
+      document.documentElement.dataset.theme = ['dark', 'light'].includes(theme)
+        ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    })();
+  </script>
+  <link rel="stylesheet" href="/css/site.css?v=sailing-1">
+  <link rel="stylesheet" href="/css/pocket.css?v=1">
+  <script src="/js/site.js?v=sailing-1" defer></script>
+  <script src="/js/pocket.js?v=1" defer></script>
+</head>
+<body class="pocket-page">
+  <canvas id="voyage-canvas" class="voyage-canvas" aria-hidden="true"></canvas>
+  <header class="pocket-header">
+    <a class="pocket-home" href="/" aria-label="返回独木舟首页">
+      <svg viewBox="0 0 100 64" aria-hidden="true"><path d="M8 37C30 45 67 43 93 28C85 49 67 57 47 55C29 53 16 46 8 37Z" fill="currentColor"/><path d="M69 6a2.5 2.5 0 0 1 3.5 3.5L48 34l-4.5 9a4 4 0 0 1-6.5.8l-3.5-3.5a4 4 0 0 1 .8-6.5l9-4.5Z" fill="currentColor"/></svg>
+      <span>独木舟 <small>DUMUZHOU</small></span>
+    </a>
+    <span class="header-note">A LITTLE SPACE TO EXPLORE</span>
+    <a class="back-home" href="/">← <span>返回首页</span></a>
+  </header>
+  <main class="pocket-layout">
+    <section class="pocket-intro" aria-labelledby="pocket-title">
+      <p class="pocket-kicker"><span>01</span> THE POCKET EDITION</p>
+      <h1 id="pocket-title">Small screen.<br><em>Big ideas.</em></h1>
+      <p class="intro-copy">一个小小的掌上空间。<br>用好奇心，探索我的数字世界。</p>
+      <div class="intro-signature"><b>+</b><span>独木舟 / DUMUZHOU<small>DEVELOPER &amp; PRODUCT BUILDER</small></span></div>
+      <p class="intro-note">Made to be explored. <span>↗</span></p>
+    </section>
+
+    <section class="console-area" aria-label="互动掌机">
+      <p class="console-caption">✳ LESS SCROLL. MORE PLAY.</p>
+      <div class="console" id="console">
+        <div class="console-top"><span>OFF</span><button class="power-switch" type="button" aria-label="切换电源" aria-pressed="true"><i></i></button><span>ON ◀</span></div>
+        <div class="screen-bezel">
+          <div class="bezel-heading"><i></i><span>DOT MATRIX WITH PERSONALITY</span><i></i></div>
+          <div class="battery"><i></i><span>BATTERY</span></div>
+          <div class="screen-frame"><div class="screen" id="screen" aria-live="polite"></div></div>
+        </div>
+        <div class="console-brand"><strong>pocket</strong><span>PORTFOLIO SYSTEM</span><sup>™</sup></div>
+        <div class="dpad-well" aria-label="方向键">
+          <div class="dpad-shape" aria-hidden="true"><i></i></div>
+          <button class="dpad up" data-control="up" type="button" aria-label="向上">▲</button>
+          <button class="dpad down" data-control="down" type="button" aria-label="向下">▼</button>
+          <button class="dpad left" data-control="left" type="button" aria-label="向左">◀</button>
+          <button class="dpad right" data-control="right" type="button" aria-label="向右">▶</button>
+        </div>
+        <div class="action-well">
+          <button class="action-button button-b" data-control="b" type="button" aria-label="B 返回"></button>
+          <button class="action-button button-a" data-control="a" type="button" aria-label="A 确认"></button>
+          <span class="label-b">B</span><span class="label-a">A</span>
+        </div>
+        <div class="system-buttons">
+          <div><button data-control="select" type="button" aria-label="Select"></button><span>SELECT</span></div>
+          <div><button data-control="start" type="button" aria-label="Start 返回菜单"></button><span>START</span></div>
+        </div>
+        <div class="speaker" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="model-number">MD-001</span><span class="console-bottom-mark">© DUMUZHOU</span>
+      </div>
+    </section>
+
+    <aside class="pocket-help" aria-label="操作说明">
+      <div class="help-top"><span>HOW TO PLAY</span><span>↙</span></div>
+      <div class="help-row"><span class="help-icon arrows">✣</span><p><b>探索方向</b><small>方向键或键盘方向键</small></p></div>
+      <div class="help-row"><span class="help-icon">A</span><p><b>进入看看</b><small>A 键或键盘 Z 键</small></p></div>
+      <div class="help-row"><span class="help-icon">B</span><p><b>返回上一级</b><small>B 键或键盘 X 键</small></p></div>
+      <div class="help-row"><span class="help-icon start-icon"></span><p><b>回到主菜单</b><small>START 或 Enter 键</small></p></div>
+      <p class="help-foot">NO HIGH SCORE REQUIRED.</p>
+      <a class="help-link" href="/">↗ &nbsp; Back to the main voyage</a>
+    </aside>
+  </main>
+</body>
+</html>

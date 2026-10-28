@@ -3,6 +3,8 @@
 个人品牌静态网站，部署于 https://idumuzhou.github.io/ 。
 
 - `index.html`：个人首页。
+- `pocket.html`：互动掌机页面，支持屏幕按钮和键盘操作。
+- `css/pocket.css`、`js/pocket.js`：掌机外观与菜单交互。
 - `404.html`：GitHub Pages 为不存在的地址提供的自定义错误页。
 - `css/site.css`、`js/site.js`：响应式布局、双语、主题和轻量视差。
 - `assets/`：原创舟形 SVG Logo、PNG 图标、深浅两套独木舟主视觉及字体。
