@@ -13,4 +13,4 @@
 
 语言默认中文，主题默认跟随系统；浏览器偏好沿用 `dumu-language` 和 `dumu-theme`。禁用 JavaScript 时仍可阅读中文首页，主题通过系统配色自动匹配。
 
-主视觉由内置 imagegen 生成，Logo 使用原创 SVG 路径。Barlow Condensed 许可证见 `assets/FONT-LICENSE.txt`。
+主视觉由内置 imagegen 生成，Logo 使用原创 SVG 路径。Barlow Condensed 许可证见 `assets/FONT-LICENSE.txt`，掌机屏幕字体 Press Start 2P 许可证见 `assets/PRESS-START-2P-LICENSE.txt`。

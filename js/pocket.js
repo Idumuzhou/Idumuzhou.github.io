@@ -36,7 +36,7 @@
       return;
     }
     const detail = content[section][page];
-    screen.innerHTML = `<div class="screen-inner"><div class="screen-top"><span>${items[section]}</span><span>${page + 1}/${content[section].length}</span></div><div class="screen-detail ${detail.symbol ? 'center' : ''}">${detail.symbol ? `<span class="pixel-symbol">${detail.symbol}</span>` : person}<h2>${detail.title}</h2><p>${detail.text}</p><span class="detail-small">${detail.small}</span>${detail.link ? '<span class="screen-cta">A : OPEN GITHUB ↗</span>' : ''}</div><div class="screen-footer"><span>B : BACK</span><span>START : HOME</span></div></div>`;
+    screen.innerHTML = `<div class="screen-inner"><div class="screen-top"><span>${items[section]}</span><span>${page + 1}/${content[section].length}</span></div><div class="screen-detail ${detail.symbol ? 'center' : ''}">${detail.symbol ? `<span class="pixel-symbol">${detail.symbol}</span><h2>${detail.title}</h2>` : `<div class="detail-heading">${person}<h2>${detail.title}</h2></div>`}<p>${detail.text}</p><span class="detail-small">${detail.small}</span>${detail.link ? '<button class="screen-cta" type="button" data-github>A : OPEN GITHUB ↗</button>' : ''}${content[section].length > 1 ? `<span class="screen-pages">◀ ${page + 1} / ${content[section].length} ▶</span>` : ''}</div><div class="screen-footer"><span>B : BACK</span><span>START : HOME</span></div></div>`;
   }
 
   function control(key) {
@@ -63,8 +63,13 @@
   });
   document.querySelectorAll('[data-control]').forEach((button) => button.addEventListener('click', () => control(button.dataset.control)));
   screen.addEventListener('click', (event) => {
+    if (!on) return;
+    if (event.target.closest('[data-github]')) {
+      window.open('https://github.com/Idumuzhou', '_blank', 'noopener,noreferrer');
+      return;
+    }
     const menu = event.target.closest('[data-menu]');
-    if (!on || !menu) return;
+    if (!menu) return;
     selected = Number(menu.dataset.menu);
     section = selected; page = 0; render();
   });

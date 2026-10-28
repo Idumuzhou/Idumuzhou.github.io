@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url('/assets/PressStart2P-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 .pocket-page { min-height: 100vh; }
 .pocket-header { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; width: min(100% - 64px, 1440px); height: 82px; margin: 0 auto; border-bottom: 1px solid var(--line); }
 .pocket-home { display: flex; align-items: center; gap: 9px; font-weight: 750; font-size: 16px; line-height: 1.1; }
@@ -24,9 +31,9 @@
 .console-top { position: absolute; top: 0; left: 0; width: 100%; height: 5%; display: flex; align-items: flex-start; padding: .7% 6%; gap: 1.5%; border-bottom: 2px solid #c9ccc3; font: 1.5cqw monospace; letter-spacing: .1em; color: #727b72; }
 .console-top::before, .console-top::after { content: ''; position: absolute; top: 0; height: 100%; border-left: 2px solid #cdd0c6; }
 .console-top::before { left: 5%; } .console-top::after { right: 5%; }
-.power-switch { position: relative; width: 9%; height: 35%; margin-top: -1.5%; border-radius: 3px 3px 0 0; background: repeating-linear-gradient(90deg,#717a72 0 2px,#a1a89e 2px 4px); box-shadow: 0 1px 2px #777e73; z-index: 2; }
-.power-switch i { position: absolute; width: 40%; height: 100%; left: 55%; top: 0; border-left: 1px solid #535d55; transition: left .2s; }
-.console.off .power-switch i { left: 5%; }
+.power-switch { position: relative; width: 10%; height: 38%; margin-top: -1.5%; border-radius: 3px 3px 0 0; background: #c7cbc1; box-shadow: inset 0 1px 2px #929a90; z-index: 2; }
+.power-switch i { position: absolute; width: 68%; height: 100%; left: 32%; top: 0; border-radius: 2px 2px 0 0; background: repeating-linear-gradient(90deg,#6d766e 0 2px,#a1a89e 2px 4px); box-shadow: 0 1px 2px #777e73; transition: left .2s; }
+.console.off .power-switch i { left: 0; }
 .screen-bezel { position: absolute; top: 9%; left: 6%; width: 88%; height: 46%; border-radius: 14px 14px 46px 14px; background: linear-gradient(125deg,#7c837e,#6d746e); box-shadow: inset 0 2px 3px rgba(40,46,41,.25); }
 .bezel-heading { position: absolute; top: 5%; left: 4%; right: 4%; display: flex; align-items: center; gap: 3%; color: #c4c7bc; font: bold 1.35cqw monospace; white-space: nowrap; }
 .bezel-heading i { height: 3px; flex: 1; border-top: 2px solid #89586b; border-bottom: 1px solid #a9aaa2; }
@@ -34,29 +41,32 @@
 .battery i { width: 7px; height: 7px; border-radius: 50%; background: #eb5e5a; box-shadow: 0 0 6px #fb7c6b; }
 .console.off .battery i { background: #714b4c; box-shadow: none; }
 .screen-frame { position: absolute; top: 12%; left: 15%; width: 77%; height: 81%; padding: 1.4%; border-radius: 3px; background: #434c43; box-shadow: 0 1px 1px #b3b8a8; }
-.screen { position: relative; width: 100%; height: 100%; overflow: hidden; color: #293e24; background: radial-gradient(ellipse at center, #c5d987, #a4bc70 90%); box-shadow: inset 0 0 12px rgba(50,70,27,.3); font-family: 'Courier New', monospace; font-weight: bold; font-size: 2.45cqw; line-height: 1.15; }
+.screen { position: relative; width: 100%; height: 100%; overflow: hidden; color: #293e24; background: radial-gradient(ellipse at center, #c5d987, #a4bc70 90%); box-shadow: inset 0 0 12px rgba(50,70,27,.3); font-family: 'Press Start 2P', monospace; font-weight: 400; font-size: 1.85cqw; line-height: 1.35; }
 .screen::after { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(39,67,30,.045) 2px 3px), repeating-linear-gradient(90deg, transparent 0 2px, rgba(39,67,30,.035) 2px 3px); }
 .console.off .screen > * { visibility: hidden; }
 .console.off .screen { background: #a3b77a; }
 .screen-inner { height: 100%; padding: 6% 6% 4%; display: flex; flex-direction: column; }
-.screen-top { display: flex; justify-content: space-between; padding-bottom: 4%; border-bottom: 1px solid rgba(42,64,33,.25); font-size: 1.8cqw; letter-spacing: .03em; }
+.screen-top { display: flex; justify-content: space-between; padding-bottom: 4%; border-bottom: 1px solid rgba(42,64,33,.25); font-size: 1.5cqw; letter-spacing: 0; }
 .screen-hero { display: flex; gap: 5%; align-items: center; padding: 7% 0 4%; }
 .pixel-person { width: 15%; flex: none; image-rendering: pixelated; }
-.screen-hero strong { display: block; font-size: 4.5cqw; line-height: .95; letter-spacing: -.08em; }
-.screen-hero small { display: block; margin-top: 6%; font-size: 1.6cqw; white-space: nowrap; }
+.screen-hero strong { display: block; font-size: 3.5cqw; line-height: 1.15; letter-spacing: -.08em; }
+.screen-hero small { display: block; margin-top: 6%; font-size: 1.15cqw; white-space: nowrap; }
 .screen-menu { display: grid; gap: 2%; flex: 1; }
-.screen-menu button { width: 100%; display: flex; align-items: center; gap: 4%; padding: 1% 3%; color: inherit; font: inherit; font-size: 2.1cqw; text-align: left; }
-.screen-menu button span:last-child { margin-left: auto; font-size: 1.6cqw; }
+.screen-menu button { width: 100%; display: flex; align-items: center; gap: 4%; padding: 1% 3%; color: inherit; font: inherit; font-size: 1.7cqw; text-align: left; }
+.screen-menu button span:last-child { margin-left: auto; font-size: 1.25cqw; }
 .screen-menu button.selected { color: #c5d987; background: #314b2b; }
-.screen-bottom { margin-top: auto; padding-top: 5%; font-size: 1.65cqw; }
+.screen-bottom { margin-top: auto; padding-top: 5%; font-size: 1.25cqw; }
 .screen-detail { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 8%; padding: 5% 3%; }
-.screen-detail h2 { font: bold 3.6cqw/1.05 'Courier New', monospace; letter-spacing: -.05em; }
-.screen-detail p { font-size: 2.1cqw; line-height: 1.25; }
-.screen-detail .detail-small { font-size: 1.65cqw; }
+.detail-heading { display: flex; align-items: center; gap: 6%; }
+.detail-heading .pixel-person { width: 16%; }
+.screen-detail h2 { font: 2.65cqw/1.3 'Press Start 2P', monospace; letter-spacing: -.05em; }
+.screen-detail p { font-size: 1.55cqw; line-height: 1.5; }
+.screen-detail .detail-small { font-size: 1.2cqw; line-height: 1.4; }
 .screen-detail.center { text-align: center; align-items: center; }
 .screen-detail .pixel-symbol { font-size: 7cqw; line-height: 1; }
-.screen-detail .screen-cta { padding: 4% 6%; border: 1px solid #314b2b; font-size: 1.8cqw; }
-.screen-footer { display: flex; justify-content: space-between; padding-top: 4%; border-top: 1px solid rgba(42,64,33,.25); font-size: 1.6cqw; }
+.screen-detail .screen-cta { padding: 4% 6%; border: 1px solid #314b2b; color: inherit; font: inherit; font-size: 1.3cqw; }
+.screen-pages { text-align: center; font-size: 1.3cqw; }
+.screen-footer { display: flex; justify-content: space-between; padding-top: 4%; border-top: 1px solid rgba(42,64,33,.25); font-size: 1.2cqw; }
 .console-brand { position: absolute; top: 57.5%; left: 7%; color: #354159; display: flex; align-items: baseline; gap: 2%; width: 75%; }
 .console-brand strong { font-size: 7cqw; letter-spacing: -.08em; line-height: 1; }
 .console-brand span, .console-brand sup { font: bold 1.55cqw monospace; letter-spacing: .1em; }
@@ -68,7 +78,7 @@
 .dpad.up, .dpad.down { left: 33%; width: 34%; height: 33%; } .dpad.left, .dpad.right { top: 33%; width: 33%; height: 34%; }
 .dpad.up { top: 0; } .dpad.down { bottom: 0; } .dpad.left { left: 0; } .dpad.right { right: 0; }
 .dpad:active { color: #68766c; }
-.action-well { position: absolute; top: 68%; right: 6%; width: 33%; height: 15%; border-radius: 50px; background: linear-gradient(135deg,#cbd0c6,#e9ebe1); transform: rotate(-25deg); }
+.action-well { position: absolute; top: 68%; right: 6%; width: 33%; height: 10.5%; border-radius: 50px; background: linear-gradient(135deg,#cbd0c6,#e9ebe1); transform: rotate(-25deg); }
 .action-button { position: absolute; top: 9%; width: 43%; aspect-ratio: 1; border-radius: 50%; border: 1px solid #6d2845; background: radial-gradient(circle at 35% 28%,#ba3971,#8f1e50 75%); box-shadow: inset 2px 2px 2px #cc6190, inset -2px -3px 3px #6f163b, 1px 3px 3px #7b8077; }
 .action-button:active { transform: translateY(2px); box-shadow: inset 2px 2px 5px #68183c; }
 .button-b { left: 3%; } .button-a { right: 3%; }
