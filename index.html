@@ -24,8 +24,8 @@
         ? theme : (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
     })();
   </script>
-  <link rel="stylesheet" href="/css/site.css?v=voyage-3">
-  <script src="/js/site.js?v=voyage-3" defer></script>
+  <link rel="stylesheet" href="/css/site.css?v=sailing-1">
+  <script src="/js/site.js?v=sailing-1" defer></script>
   <noscript><style>.language,.appearance,.menu-toggle{display:none}.nav-drawer{display:flex}</style></noscript>
 </head>
 <body>
@@ -86,16 +86,11 @@
       </div>
       <figure class="hero-art" data-reveal>
         <div class="visual-stage" id="visual-stage" data-vessel-stage>
-          <div class="stage-watermark" aria-hidden="true">D / Z</div>
-          <div class="stage-corner stage-corner-tl" aria-hidden="true"></div>
-          <div class="stage-corner stage-corner-tr" aria-hidden="true"></div>
-          <div class="stage-corner stage-corner-bl" aria-hidden="true"></div>
-          <div class="stage-corner stage-corner-br" aria-hidden="true"></div>
-          <div class="stage-status"><i aria-hidden="true"></i><span data-zh="系统在线" data-en="SYS ONLINE">系统在线</span><b class="fps-counter">60 FPS</b></div>
-          <div class="stage-readout stage-readout-top" aria-hidden="true"><span>LAT 30.2741° N</span><span>LON 120.1551° E</span></div>
-          <canvas id="vessel-canvas" class="vessel-canvas" width="1200" height="800" aria-label="3D 独木舟航行模拟器"></canvas>
-          <div class="stage-scan" aria-hidden="true"></div>
-          <div class="stage-readout stage-readout-bottom" aria-hidden="true"><span>VECTOR / 001</span><span class="drift-readout">DRIFT +0.42</span></div>
+          <canvas id="vessel-canvas" class="vessel-canvas" width="1200" height="800" role="img" aria-label="一艘木质帆船在蓝色波浪上航行" data-aria-zh="一艘木质帆船在蓝色波浪上航行" data-aria-en="A wooden sailboat sailing over blue waves"></canvas>
+          <div class="sailing-control">
+            <label for="sailing-position" data-zh="拖动，让小舟航行" data-en="Drag to sail">拖动，让小舟航行</label>
+            <input id="sailing-position" type="range" min="0" max="100" value="50" aria-label="调整小舟的位置" data-aria-zh="调整小舟的位置" data-aria-en="Adjust the boat position">
+          </div>
         </div>
         <figcaption><span data-zh="一艘独木舟，一段持续向前的旅程。" data-en="One canoe, a journey that keeps moving forward.">一艘独木舟，一段持续向前的旅程。</span><b aria-hidden="true">↗</b></figcaption>
       </figure>

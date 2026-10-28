@@ -396,348 +396,150 @@
     }
   }
 
-  /* -------------------------------------------------------------
-     2. Hero 3D Vessel Canvas: Mathematical Wireframe Canoe & Radar
-     ------------------------------------------------------------- */
+  /* A small wooden boat sailing through layered, rolling waves. */
   const vesselStage = document.getElementById('visual-stage');
   const vesselCanvas = document.getElementById('vessel-canvas');
-  if (vesselCanvas && vesselStage) {
+  const sailingPosition = document.getElementById('sailing-position');
+  if (vesselCanvas && vesselStage && sailingPosition) {
     const ctx = vesselCanvas.getContext('2d');
-    let width = 1200;
-    let height = 800;
-    let dpr = 1;
-    let vesselAnimId = null;
-    let isVisible = true;
-
-    // Viewport observer to pause 3D math when scrolled away
-    if ('IntersectionObserver' in window) {
-      const stageObserver = new IntersectionObserver((entries) => {
-        isVisible = entries[0].isIntersecting;
-      }, { threshold: 0.05 });
-      stageObserver.observe(vesselStage);
-    }
+    let width = 0;
+    let height = 0;
+    let visible = true;
+    let manual = false;
+    let position = 0.5;
+    let frame = 0;
 
     function resizeVessel() {
       const rect = vesselStage.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      width = Math.max(rect.width, 320);
-      height = Math.max(rect.height, 220);
-      vesselCanvas.width = Math.floor(width * dpr);
-      vesselCanvas.height = Math.floor(height * dpr);
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = rect.width;
+      height = rect.height;
+      vesselCanvas.width = Math.round(width * dpr);
+      vesselCanvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      if (reducedMotion.matches) draw(0);
     }
 
-    window.addEventListener('resize', resizeVessel, { passive: true });
-    resizeVessel();
-
-    // Mouse tracking for 3D parallax tilt
-    let targetRotY = -0.58;
-    let targetRotX = 0.32;
-    let currentRotY = targetRotY;
-    let currentRotX = targetRotX;
-
-    window.addEventListener('pointermove', (e) => {
-      const rect = vesselStage.getBoundingClientRect();
-      const nx = ((e.clientX - rect.left) / rect.width) - 0.5;
-      const ny = ((e.clientY - rect.top) / rect.height) - 0.5;
-      targetRotY = -0.58 + nx * 0.45;
-      targetRotX = 0.32 - ny * 0.28;
-    }, { passive: true });
-
-    // Floating stardust sparks
-    const sparks = [];
-    for (let i = 0; i < 28; i++) {
-      sparks.push({
-        x: (Math.random() - 0.5) * 360,
-        y: Math.random() * 80 - 40,
-        z: (Math.random() - 0.5) * 360,
-        vy: -(Math.random() * 0.6 + 0.3),
-        alpha: Math.random() * 0.7 + 0.2,
-        size: Math.random() * 1.6 + 0.6
-      });
-    }
-
-    // FPS Telemetry
-    let frameCount = 0;
-    let lastFpsTime = performance.now();
-    const fpsElem = document.querySelector('.fps-counter');
-    const driftElem = document.querySelector('.drift-readout');
-
-    function project(x, y, z, rotX, rotY, cx, cy, fov) {
-      // Rotate around Y
-      const cosY = Math.cos(rotY);
-      const sinY = Math.sin(rotY);
-      const x1 = x * cosY + z * sinY;
-      const z1 = -x * sinY + z * cosY;
-
-      // Rotate around X
-      const cosX = Math.cos(rotX);
-      const sinX = Math.sin(rotX);
-      const y1 = y * cosX - z1 * sinX;
-      const z2 = y * sinX + z1 * cosX;
-
-      // Perspective scale
-      const dist = fov + z2;
-      if (dist <= 10) return null;
-      const scale = fov / dist;
-
-      return {
-        x: cx + x1 * scale,
-        y: cy + y1 * scale,
-        z: z2,
-        scale
-      };
-    }
-
-    function renderVessel(time) {
-      if (document.hidden || !isVisible) {
-        vesselAnimId = requestAnimationFrame(renderVessel);
-        return;
+    function wave(y, depth, phase, top, bottom, time) {
+      const x0 = 42, x1 = 558;
+      const waveY = (x) => y + Math.sin((x - x0) * 0.055 + phase + time * 1.15) * 6;
+      ctx.beginPath();
+      ctx.moveTo(x0, waveY(x0));
+      for (let x = x0; x <= x1; x += 4) ctx.lineTo(x, waveY(x));
+      ctx.bezierCurveTo(x1 + 12, y + 8, x1 + 12, y + depth - 6, x1, y + depth);
+      for (let x = x1; x >= x0; x -= 4) ctx.lineTo(x, waveY(x) + depth);
+      ctx.bezierCurveTo(x0 - 12, y + depth - 6, x0 - 12, y + 8, x0, waveY(x0));
+      ctx.closePath();
+      const gradient = ctx.createLinearGradient(0, y - 8, 0, y + depth + 8);
+      gradient.addColorStop(0, top);
+      gradient.addColorStop(1, bottom);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(218, 239, 255, .38)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      for (let x = x0 + 2; x <= x1 - 2; x += 4) {
+        if (x === x0 + 2) ctx.moveTo(x, waveY(x) + 2);
+        else ctx.lineTo(x, waveY(x) + 2);
       }
+      ctx.stroke();
+    }
 
-      // FPS tracking
-      frameCount++;
-      const now = performance.now();
-      if (now - lastFpsTime >= 500) {
-        const fps = Math.round((frameCount * 1000) / (now - lastFpsTime));
-        if (fpsElem) fpsElem.textContent = `${fps} FPS`;
-        if (driftElem) {
-          const drift = (Math.sin(time * 0.001) * 0.18 + 0.42).toFixed(2);
-          driftElem.textContent = `DRIFT +${drift}`;
-        }
-        frameCount = 0;
-        lastFpsTime = now;
+    function boat(x, y, time) {
+      ctx.save();
+      ctx.translate(x, y + Math.sin(time * 1.7 + x * .02) * 3);
+      ctx.rotate(Math.sin(time * 1.35 + x * .02) * .025);
+      // Sail and mast: softly shaded linen and pale wood.
+      let sail = ctx.createLinearGradient(-105, -150, 55, -20);
+      sail.addColorStop(0, '#fffefa');
+      sail.addColorStop(.7, '#f8f5e9');
+      sail.addColorStop(1, '#d8d4c7');
+      ctx.fillStyle = sail;
+      ctx.beginPath();
+      ctx.moveTo(2, -160);
+      ctx.bezierCurveTo(-9, -146, -43, -100, -105, -38);
+      ctx.quadraticCurveTo(-54, -35, 2, -39);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(199, 191, 168, .38)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      const mast = ctx.createLinearGradient(-2, 0, 5, 0);
+      mast.addColorStop(0, '#a97839'); mast.addColorStop(.45, '#f3d39b'); mast.addColorStop(1, '#bf8b4c');
+      ctx.fillStyle = mast;
+      ctx.beginPath(); ctx.roundRect(-2, -162, 6, 177, 3); ctx.fill();
+      // Dark inner rim, then curved wooden hull.
+      ctx.fillStyle = '#b27c43';
+      ctx.beginPath(); ctx.ellipse(0, 3, 100, 17, 0, 0, Math.PI * 2); ctx.fill();
+      const inner = ctx.createLinearGradient(0, -12, 0, 22);
+      inner.addColorStop(0, '#e4bd83'); inner.addColorStop(1, '#bd884d');
+      ctx.fillStyle = inner;
+      ctx.beginPath(); ctx.ellipse(0, 3, 95, 13, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(-100, 3); ctx.bezierCurveTo(-94, 22, -86, 48, -65, 56);
+      ctx.bezierCurveTo(-38, 68, 38, 68, 65, 56);
+      ctx.bezierCurveTo(86, 48, 94, 22, 100, 3);
+      ctx.bezierCurveTo(75, 18, -75, 18, -100, 3); ctx.closePath();
+      const wood = ctx.createLinearGradient(-100, 0, 100, 58);
+      wood.addColorStop(0, '#f6d8a7'); wood.addColorStop(.35, '#e7bd82'); wood.addColorStop(.7, '#f5d6a1'); wood.addColorStop(1, '#c9955d');
+      ctx.fillStyle = wood; ctx.fill(); ctx.clip();
+      // Fine grain gives the hull a tactile, carved finish.
+      for (let i = -90; i <= 90; i += 9) {
+        ctx.beginPath(); ctx.moveTo(i, 7); ctx.bezierCurveTo(i - 3, 26, i + 4, 45, i + 1, 65);
+        ctx.strokeStyle = i % 18 === 0 ? 'rgba(155, 105, 52, .15)' : 'rgba(255, 245, 216, .24)';
+        ctx.lineWidth = 1.3; ctx.stroke();
       }
+      ctx.restore();
+      ctx.strokeStyle = '#fbe4bd'; ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.ellipse(0, 3, 99, 16, 0, 0, Math.PI); ctx.stroke();
+      ctx.restore();
+    }
 
-      const t = time * 0.001;
-      const isDark = getEffectiveTheme() === 'dark';
-
+    function draw(time) {
+      if (!width || !height) return;
       ctx.clearRect(0, 0, width, height);
-
-      // Interpolate rotation
-      currentRotY += (targetRotY - currentRotY) * 0.06;
-      currentRotX += (targetRotX - currentRotX) * 0.06;
-
-      // Subtle aquatic heave & roll
-      const heaveY = Math.sin(t * 1.4) * 8;
-      const rollRot = Math.cos(t * 1.1) * 0.04;
-      const pitchRot = Math.sin(t * 0.8) * 0.03;
-
-      const rotX = currentRotX + pitchRot;
-      const rotY = currentRotY;
-      const cx = width * 0.5;
-      const cy = height * 0.52 + heaveY;
-      const fov = 480;
-
-      // Color palette
-      const primaryColor = isDark ? '#0df293' : '#059669';
-      const wireColor = isDark ? 'rgba(244, 246, 250, 0.75)' : 'rgba(15, 23, 42, 0.7)';
-      const softWireColor = isDark ? 'rgba(244, 246, 250, 0.22)' : 'rgba(15, 23, 42, 0.2)';
-      const accentSoft = isDark ? 'rgba(13, 242, 147, 0.25)' : 'rgba(5, 150, 105, 0.25)';
-
-      // 1. Radar water plane rings beneath canoe
-      const planeY = 55;
-      for (let r = 80; r <= 220; r += 70) {
-        ctx.beginPath();
-        for (let a = 0; a <= Math.PI * 2 + 0.1; a += 0.15) {
-          const px = Math.cos(a + t * 0.1) * r;
-          const pz = Math.sin(a + t * 0.1) * r;
-          const p = project(px, planeY, pz, rotX, rotY, cx, cy, fov);
-          if (!p) continue;
-          if (a === 0) ctx.moveTo(p.x, p.y);
-          else ctx.lineTo(p.x, p.y);
-        }
-        ctx.strokeStyle = isDark ? 'rgba(13, 242, 147, 0.1)' : 'rgba(5, 150, 105, 0.12)';
-        ctx.lineWidth = 1;
-        ctx.setLineDash([4, 6]);
-        ctx.stroke();
-        ctx.setLineDash([]);
-      }
-
-      // Radar sweep ray
-      const sweepAngle = t * 1.2;
-      const sweepStart = project(0, planeY, 0, rotX, rotY, cx, cy, fov);
-      const sweepEnd = project(Math.cos(sweepAngle) * 230, planeY, Math.sin(sweepAngle) * 230, rotX, rotY, cx, cy, fov);
-      if (sweepStart && sweepEnd) {
-        ctx.beginPath();
-        ctx.moveTo(sweepStart.x, sweepStart.y);
-        ctx.lineTo(sweepEnd.x, sweepEnd.y);
-        ctx.strokeStyle = isDark ? 'rgba(13, 242, 147, 0.3)' : 'rgba(5, 150, 105, 0.3)';
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
-      }
-
-      // 2. Parametric 3D Canoe Geometry
-      const lengthZ = 190;
-      const maxBeam = 56;
-      const keelDepth = 42;
-
-      // Mathematical profile functions
-      const getWidthAt = (u) => maxBeam * Math.pow(Math.max(0, 1 - u * u), 0.58) * (1 - 0.08 * u);
-      const getRailY = (u) => -16 + 32 * (u * u);
-      const getKeelY = (u) => 28 - 24 * Math.pow(u, 4);
-
-      // Generate longitudinal points
-      const stationSteps = 28;
-      const leftRailPts = [];
-      const rightRailPts = [];
-      const keelPts = [];
-      const midLeftPts = [];
-      const midRightPts = [];
-
-      for (let i = 0; i <= stationSteps; i++) {
-        const u = -1 + (i / stationSteps) * 2;
-        const z = u * lengthZ;
-        const w = getWidthAt(u);
-        const yRail = getRailY(u);
-        const yKeel = getKeelY(u);
-        const yMid = yRail + (yKeel - yRail) * 0.52;
-        const wMid = w * 0.88;
-
-        leftRailPts.push(project(-w, yRail, z, rotX, rotY, cx, cy, fov));
-        rightRailPts.push(project(w, yRail, z, rotX, rotY, cx, cy, fov));
-        keelPts.push(project(0, yKeel, z, rotX, rotY, cx, cy, fov));
-        midLeftPts.push(project(-wMid, yMid, z, rotX, rotY, cx, cy, fov));
-        midRightPts.push(project(wMid, yMid, z, rotX, rotY, cx, cy, fov));
-      }
-
-      // Helper to stroke a projected curve
-      const strokeCurve = (pts, color, widthVal, dashed = false) => {
-        ctx.beginPath();
-        let started = false;
-        for (let i = 0; i < pts.length; i++) {
-          const p = pts[i];
-          if (!p) continue;
-          if (!started) {
-            ctx.moveTo(p.x, p.y);
-            started = true;
-          } else {
-            ctx.lineTo(p.x, p.y);
-          }
-        }
-        ctx.strokeStyle = color;
-        ctx.lineWidth = widthVal;
-        if (dashed) ctx.setLineDash([3, 4]);
-        ctx.stroke();
-        if (dashed) ctx.setLineDash([]);
-      };
-
-      // Draw secondary longitudinal strakes
-      strokeCurve(midLeftPts, softWireColor, 1);
-      strokeCurve(midRightPts, softWireColor, 1);
-
-      // Draw Transversal Cross Ribs (forming 3D volume)
-      const ribCount = 12;
-      for (let r = 1; r < ribCount; r++) {
-        const u = -0.86 + (r / ribCount) * 1.72;
-        const z = u * lengthZ;
-        const w = getWidthAt(u);
-        const yRail = getRailY(u);
-        const yKeel = getKeelY(u);
-
-        const pL = project(-w, yRail, z, rotX, rotY, cx, cy, fov);
-        const pK = project(0, yKeel, z, rotX, rotY, cx, cy, fov);
-        const pR = project(w, yRail, z, rotX, rotY, cx, cy, fov);
-
-        if (pL && pK && pR) {
-          ctx.beginPath();
-          ctx.moveTo(pL.x, pL.y);
-          ctx.quadraticCurveTo(pK.x - (pL.x - pK.x) * 0.15, pK.y, pK.x, pK.y);
-          ctx.quadraticCurveTo(pK.x + (pR.x - pK.x) * 0.15, pK.y, pR.x, pR.y);
-          ctx.strokeStyle = (r === 6 || r === 7) ? accentSoft : softWireColor;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-
-          // Deck cross beam (thwart)
-          if (r === 4 || r === 8) {
-            ctx.beginPath();
-            ctx.moveTo(pL.x, pL.y);
-            ctx.lineTo(pR.x, pR.y);
-            ctx.strokeStyle = wireColor;
-            ctx.lineWidth = 1.2;
-            ctx.stroke();
-          }
-        }
-      }
-
-      // Draw primary Keel & Rails
-      strokeCurve(keelPts, primaryColor, 2);
-      strokeCurve(leftRailPts, wireColor, 1.6);
-      strokeCurve(rightRailPts, wireColor, 1.6);
-
-      // Angled steering paddle / rudder
-      const paddleZ = 85;
-      const pTop = project(20, -45, paddleZ - 30, rotX, rotY, cx, cy, fov);
-      const pBottom = project(55, 45, paddleZ + 35, rotX, rotY, cx, cy, fov);
-      if (pTop && pBottom) {
-        ctx.beginPath();
-        ctx.moveTo(pTop.x, pTop.y);
-        ctx.lineTo(pBottom.x, pBottom.y);
-        ctx.strokeStyle = primaryColor;
-        ctx.lineWidth = 2.2;
-        ctx.stroke();
-
-        // Paddle blade
-        const pBladeTip = project(62, 58, paddleZ + 48, rotX, rotY, cx, cy, fov);
-        if (pBladeTip) {
-          ctx.beginPath();
-          ctx.moveTo(pBottom.x, pBottom.y);
-          ctx.lineTo(pBladeTip.x, pBladeTip.y);
-          ctx.strokeStyle = primaryColor;
-          ctx.lineWidth = 3.5;
-          ctx.stroke();
-        }
-      }
-
-      // 3. Glowing Structural Nodes at Bow, Stern & Center
-      const keyNodes = [
-        project(0, getRailY(-1), -lengthZ, rotX, rotY, cx, cy, fov), // Bow
-        project(0, getRailY(1), lengthZ, rotX, rotY, cx, cy, fov),   // Stern
-        project(0, getKeelY(0), 0, rotX, rotY, cx, cy, fov),        // Keel Mid
-        project(-maxBeam * 0.95, getRailY(0), 0, rotX, rotY, cx, cy, fov), // Mid Left
-        project(maxBeam * 0.95, getRailY(0), 0, rotX, rotY, cx, cy, fov)   // Mid Right
-      ];
-
-      keyNodes.forEach((node) => {
-        if (!node) return;
-        ctx.beginPath();
-        ctx.arc(node.x, node.y, 3 * node.scale, 0, Math.PI * 2);
-        ctx.fillStyle = primaryColor;
-        ctx.shadowColor = primaryColor;
-        ctx.shadowBlur = 8;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
-
-      // 4. Floating Stardust Sparks rising upward
-      sparks.forEach((s) => {
-        s.y += s.vy;
-        if (s.y < -90) {
-          s.y = 70;
-          s.x = (Math.random() - 0.5) * 320;
-          s.z = (Math.random() - 0.5) * 320;
-        }
-
-        const sp = project(s.x, s.y, s.z, rotX, rotY, cx, cy, fov);
-        if (sp) {
-          ctx.beginPath();
-          ctx.arc(sp.x, sp.y, s.size * sp.scale, 0, Math.PI * 2);
-          ctx.fillStyle = isDark
-            ? `rgba(13, 242, 147, ${s.alpha * 0.8})`
-            : `rgba(5, 150, 105, ${s.alpha * 0.7})`;
-          ctx.fill();
-        }
-      });
-
-      if (!reducedMotion.matches) {
-        vesselAnimId = requestAnimationFrame(renderVessel);
-      }
+      const scale = Math.min(width / 600, height / 400);
+      ctx.save();
+      ctx.translate((width - 600 * scale) / 2, (height - 400 * scale) / 2 - 30 * scale);
+      ctx.scale(scale, scale);
+      wave(245, 62, 0, '#83b9f3', '#285caa', time);
+      wave(255, 66, 1.2, '#a1c9f6', '#3975c7', time);
+      wave(265, 67, 2.3, '#7eaff0', '#285fae', time);
+      boat(150 + position * 300, 218, time);
+      wave(286, 68, 3.1, '#a5cdf7', '#4d87d1', time);
+      wave(300, 66, 4.2, '#a9cff7', '#699ee0', time);
+      ctx.restore();
+      sailingPosition.style.setProperty('--progress', `${position * 100}%`);
     }
 
-    if (!reducedMotion.matches) {
-      vesselAnimId = requestAnimationFrame(renderVessel);
-    } else {
-      renderVessel(0);
+    function animate(timestamp) {
+      if (visible && !document.hidden) {
+        const time = timestamp / 1000;
+        if (!manual) {
+          position = .5 + .43 * Math.sin(time * .28);
+          sailingPosition.value = String(Math.round(position * 100));
+        }
+        draw(time);
+      }
+      frame = requestAnimationFrame(animate);
     }
+
+    sailingPosition.addEventListener('input', () => {
+      manual = true;
+      position = Number(sailingPosition.value) / 100;
+      if (reducedMotion.matches) draw(0);
+    });
+    window.addEventListener('resize', resizeVessel, { passive: true });
+    reducedMotion.addEventListener('change', () => {
+      cancelAnimationFrame(frame);
+      if (reducedMotion.matches) draw(0);
+      else frame = requestAnimationFrame(animate);
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; }, { threshold: .05 }).observe(vesselStage);
+    }
+    resizeVessel();
+    if (!reducedMotion.matches) frame = requestAnimationFrame(animate);
   }
 })();

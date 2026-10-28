@@ -549,7 +549,7 @@ main {
   background: var(--accent);
 }
 
-/* 3D Vessel Visual Stage */
+/* A quiet stage for the sailing illustration. */
 .hero-art {
   position: relative;
   width: 100%;
@@ -557,127 +557,66 @@ main {
 
 .visual-stage {
   position: relative;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
   width: 100%;
+  overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: radial-gradient(ellipse at 50% 50%, rgba(var(--accent-rgb), 0.08), transparent 70%), var(--surface-card);
+  background: #e7e9e8;
   box-shadow: var(--shadow);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
-  overflow: hidden;
-  transition: border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
-.visual-stage:hover {
-  border-color: rgba(var(--accent-rgb), 0.4);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-soft);
+:root[data-theme='dark'] .visual-stage {
+  background: #202a32;
 }
 
 .visual-stage canvas {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  cursor: crosshair;
 }
 
-.stage-watermark {
+.sailing-control {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: var(--font-mono);
-  font-size: clamp(6rem, 15vw, 12rem);
-  font-weight: 800;
-  color: var(--fg);
-  opacity: 0.03;
-  pointer-events: none;
-  user-select: none;
-  white-space: nowrap;
-}
-
-.stage-corner {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: var(--accent);
-  opacity: 0.6;
-  pointer-events: none;
-}
-.stage-corner-tl { top: 14px; left: 14px; border-top: 1.5px solid; border-left: 1.5px solid; }
-.stage-corner-tr { top: 14px; right: 14px; border-top: 1.5px solid; border-right: 1.5px solid; }
-.stage-corner-bl { bottom: 14px; left: 14px; border-bottom: 1.5px solid; border-left: 1.5px solid; }
-.stage-corner-br { bottom: 14px; right: 14px; border-bottom: 1.5px solid; border-right: 1.5px solid; }
-
-.stage-status,
-.stage-readout {
-  position: absolute;
-  z-index: 5;
+  left: 25%;
+  right: 25%;
+  bottom: 3%;
   display: flex;
+  flex-direction: column;
+  gap: 6px;
   align-items: center;
-  gap: 8px;
-  font-family: var(--font-mono);
+}
+
+.sailing-control label {
+  color: #737b85;
   font-size: 10px;
-  letter-spacing: 1.2px;
-  color: var(--muted);
-  pointer-events: none;
+  letter-spacing: .08em;
 }
 
-.stage-status {
-  left: 20px;
-  bottom: 18px;
-}
+:root[data-theme='dark'] .sailing-control label { color: #b1bec9; }
 
-.stage-status i {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+.sailing-control input {
+  --progress: 50%;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  background: transparent;
+  cursor: grab;
+  touch-action: pan-y;
 }
-
-.stage-status b {
-  color: var(--accent);
-  font-weight: 600;
-  margin-left: 4px;
+.sailing-control input:active { cursor: grabbing; }
+.sailing-control input:focus-visible { outline: 2px solid #4d79af; outline-offset: 3px; border-radius: 5px; }
+.sailing-control input::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #8383a0 var(--progress), #c9cdce var(--progress));
 }
-
-.stage-readout-top {
-  top: 18px;
-  right: 20px;
-  gap: 14px;
-}
-
-.stage-readout-bottom {
-  right: 20px;
-  bottom: 18px;
-  gap: 12px;
-}
-
-.stage-readout-bottom span:last-child {
-  color: var(--accent);
-}
-
-.stage-scan {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.35;
-  filter: blur(1px);
-  pointer-events: none;
-  animation: scan-line 6s ease-in-out infinite;
-}
-
-@keyframes scan-line {
-  0% { transform: translateY(-10px); opacity: 0; }
-  15%, 85% { opacity: 0.45; }
-  100% { transform: translateY(500px); opacity: 0; }
-}
+.sailing-control input::-moz-range-track { height: 5px; border-radius: 5px; background: #c9cdce; }
+.sailing-control input::-moz-range-progress { height: 5px; border-radius: 5px; background: #8383a0; }
+.sailing-control input::-webkit-slider-thumb { appearance: none; -webkit-appearance: none; width: 12px; height: 20px; margin-top: -7.5px; background: transparent; }
+.sailing-control input::-moz-range-thumb { width: 12px; height: 20px; border: 0; background: transparent; }
 
 .hero-art figcaption {
   display: flex;
